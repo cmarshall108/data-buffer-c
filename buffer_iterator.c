@@ -33,7 +33,10 @@ buffer_iterator_t* buffer_iterator_init(const buffer_t *buffer)
 {
   assert(buffer != NULL);
   buffer_iterator_t *buffer_iterator = malloc(sizeof(buffer_iterator_t));
-  assert(buffer_iterator != NULL);
+  if (buffer_iterator == NULL)
+  {
+    return NULL;
+  }
   buffer_iterator->buffer = buffer;
   buffer_iterator->offset = 0;
   return buffer_iterator;
@@ -88,7 +91,10 @@ int buffer_read(buffer_iterator_t *buffer_iterator, size_t size, uint8_t **bytes
   }
 
   uint8_t *data = malloc(size);
-  assert(data != NULL);
+  if (data == NULL)
+  {
+    return -1;
+  }
   memcpy(data, buffer_iterator->buffer->data + buffer_iterator->offset, size);
   *bytes = data;
   buffer_iterator->offset += size;
