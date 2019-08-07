@@ -1,4 +1,6 @@
-// Copyright (c) 2019, Caleb Marshall.
+// Copyright (c) 2019, The Vulkan Developers.
+//
+// This file is part of Vulkan.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -18,9 +20,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 //
-//
 // You should have received a copy of the MIT License
-// along with this software. If not, see <https://opensource.org/licenses/MIT>.
+// along with Vulkan. If not, see <https://opensource.org/licenses/MIT>.
 
 #pragma once
 
@@ -40,6 +41,8 @@ typedef struct BufferIterator
   size_t offset;
 } buffer_iterator_t;
 
+buffer_iterator_t* buffer_iterator_make(void);
+
 buffer_iterator_t* buffer_iterator_init(const buffer_t *buffer);
 void buffer_iterator_free(buffer_iterator_t *buffer_iterator);
 
@@ -49,6 +52,7 @@ const buffer_t *buffer_iterator_get_buffer(buffer_iterator_t *buffer_iterator);
 void buffer_iterator_set_offset(buffer_iterator_t *buffer_iterator, size_t offset);
 size_t buffer_iterator_get_offset(buffer_iterator_t *buffer_iterator);
 
+int buffer_iterator_compare(buffer_iterator_t *buffer_iterator, buffer_iterator_t *other_buffer_iterator);
 void buffer_iterator_clear(buffer_iterator_t *buffer_iterator);
 
 int buffer_read(buffer_iterator_t *buffer_iterator, size_t size, uint8_t **bytes);
@@ -67,10 +71,19 @@ int buffer_read_int32(buffer_iterator_t *buffer_iterator, int32_t *value);
 uint64_t buffer_read_uint64(buffer_iterator_t *buffer_iterator, uint64_t *value);
 int buffer_read_int64(buffer_iterator_t *buffer_iterator, int64_t *value);
 
-int buffer_read_bytes(buffer_iterator_t *buffer_iterator, uint8_t **bytes);
+int buffer_read_bytes8(buffer_iterator_t *buffer_iterator, uint8_t **bytes);
+int buffer_read_string8(buffer_iterator_t *buffer_iterator, char **string);
+
+int buffer_read_bytes16(buffer_iterator_t *buffer_iterator, uint8_t **bytes);
+int buffer_read_string16(buffer_iterator_t *buffer_iterator, char **string);
+
+int buffer_read_bytes32(buffer_iterator_t *buffer_iterator, uint8_t **bytes);
+int buffer_read_string32(buffer_iterator_t *buffer_iterator, char **string);
+
+int buffer_read_bytes64(buffer_iterator_t *buffer_iterator, uint8_t **bytes);
+int buffer_read_string64(buffer_iterator_t *buffer_iterator, char **string);
+
 int buffer_read_string(buffer_iterator_t *buffer_iterator, char **string);
-int buffer_read_bytes_long(buffer_iterator_t *buffer_iterator, uint8_t **bytes);
-int buffer_read_string_long(buffer_iterator_t *buffer_iterator, char **string);
 
 #ifdef __cplusplus
 }
