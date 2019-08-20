@@ -261,7 +261,7 @@ int buffer_read_int32(buffer_iterator_t *buffer_iterator, int32_t *value)
   return 0;
 }
 
-uint64_t buffer_read_uint64(buffer_iterator_t *buffer_iterator, uint64_t *value)
+int buffer_read_uint64(buffer_iterator_t *buffer_iterator, uint64_t *value)
 {
   assert(buffer_iterator != NULL);
   assert(buffer_iterator->buffer != NULL);

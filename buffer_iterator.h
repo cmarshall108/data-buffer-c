@@ -68,7 +68,7 @@ int buffer_read_int16(buffer_iterator_t *buffer_iterator, int16_t *value);
 int buffer_read_uint32(buffer_iterator_t *buffer_iterator, uint32_t *value);
 int buffer_read_int32(buffer_iterator_t *buffer_iterator, int32_t *value);
 
-uint64_t buffer_read_uint64(buffer_iterator_t *buffer_iterator, uint64_t *value);
+int buffer_read_uint64(buffer_iterator_t *buffer_iterator, uint64_t *value);
 int buffer_read_int64(buffer_iterator_t *buffer_iterator, int64_t *value);
 
 int buffer_read_bytes8(buffer_iterator_t *buffer_iterator, uint8_t **bytes);
